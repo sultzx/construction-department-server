@@ -14,7 +14,14 @@ const schema = new mongoose.Schema({
     lastname: String,
     patronimyc: String,
     phone: String,
-    address: String,
+    address: {
+        type: Object,
+        apartment: String,
+        home: String,
+        street: String,
+        city: String,
+        region: String,
+    },
     avatarUrl: String,
     role: {
         type: String,

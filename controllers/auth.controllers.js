@@ -8,7 +8,9 @@ import User from '../models/User.js'
 export const registration = async (req, res) => {
     try {
         
-        const { email,  password } = req.body
+        const { email,  password, firstname, lastname, patronimyc, phone,
+           address
+        } = req.body
 
         const isEmailExist = await User.findOne({
             email: email
@@ -25,7 +27,12 @@ export const registration = async (req, res) => {
 
         const document = new User({
             email: email,
-            hashedPassword: hash
+            hashedPassword: hash,
+            firstname,
+            lastname,
+            patronimyc,
+            phone,
+            address
         })
 
         const user = await document.save()
@@ -61,7 +68,7 @@ export const login = async (req, res) => {
             })
         }
 
-        const isPassValid = await bcrypt.compare( req.body.password, user._doc.hashedPassword )
+        const isPassValid = await bcrypt.compare( password, user._doc.hashedPassword )
 
         if (!isPassValid) {
             return res.status(400).json({
@@ -84,6 +91,36 @@ export const login = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+export const update = async (req, res) => {
+    try {
+        const { firstname, lastname, patronimyc, phone, address } = req.body
+
+        await User.updateOne({
+            _id: req.userId
+        }, {
+            firstname: firstname,
+            lastname: lastname,
+            patronimyc: patronimyc,
+            phone: phone,
+            address: {
+                home: address.home,
+                street: address.street,
+                city: address.city,
+                region: address.region
+            }
+        })
+
+        res.status(200).json({
+            success: true
+        })
+
+    } catch (error) {
+        res.status(400).json({
             message: error.message
         })
     }
