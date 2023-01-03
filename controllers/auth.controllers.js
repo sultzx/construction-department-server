@@ -8,7 +8,7 @@ import User from '../models/User.js'
 export const registration = async (req, res) => {
     try {
         
-        const { email,  password, firstname, lastname, patronimyc, phone,
+        const { email,  password, firstname, lastname, patronymic, phone,
            address
         } = req.body
 
@@ -30,7 +30,7 @@ export const registration = async (req, res) => {
             hashedPassword: hash,
             firstname,
             lastname,
-            patronimyc,
+            patronymic,
             phone,
             address
         })
@@ -98,14 +98,14 @@ export const login = async (req, res) => {
 
 export const update = async (req, res) => {
     try {
-        const { firstname, lastname, patronimyc, phone, address } = req.body
+        const { firstname, lastname, patronymic, phone, address } = req.body
 
         await User.updateOne({
             _id: req.userId
         }, {
             firstname: firstname,
             lastname: lastname,
-            patronimyc: patronimyc,
+            patronymic: patronymic,
             phone: phone,
             address: {
                 home: address.home,

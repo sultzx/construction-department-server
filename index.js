@@ -4,12 +4,14 @@ import config from 'config'
 import cors from 'cors'
 
 import authRouter from './routes/auth.routes.js'
+import uploadRouter from './routes/upload.routes.js'
 
 const app = express()
 
 const PORT = config.get('port.1') || config.get('port.2')
 
 app.use(express.json())
+app.use('/uploads', express.static('uploads'))
 
 app.use(cors())
 
@@ -23,7 +25,7 @@ const start = async () => {
     }
 
     app.use('/api/auth', authRouter)
-    // app.use
+    app.use('/api/upload', uploadRouter)
 
     app.listen(PORT, (error) => {
         if(error) {

@@ -12,8 +12,11 @@ const schema = new mongoose.Schema({
     },
     firstname: String,
     lastname: String,
-    patronimyc: String,
-    phone: String,
+    patronymic: String, 
+    phone: {
+        type: String,
+        unique: true
+    },
     address: {
         type: Object,
         apartment: String,
