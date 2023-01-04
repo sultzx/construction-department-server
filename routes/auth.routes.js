@@ -9,6 +9,7 @@ const authRouter = express.Router()
 
 authRouter.post('/registration', validation.registration, validationHandler, controller.registration)
 authRouter.post('/login', validation.login, validationHandler, controller.login)
+authRouter.post('/me', checkAuth, controller.me)
 authRouter.patch('/update-profile', checkAuth, validation.updatingProfile, validationHandler, controller.update)
 
 export default authRouter
