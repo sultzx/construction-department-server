@@ -95,14 +95,14 @@ export const login = async (req, res) => {
         })
     }
 }
-
+ 
 export const me = async (req, res) => {
     try {
       const user = await User.findById(req.userId);
   
       if (!user) {
         return res.status(404).json({
-          message: 'Пользователь не найден',
+          message: 'Қолданушы желіде жоқ',
         });
       }
   
@@ -112,7 +112,7 @@ export const me = async (req, res) => {
     } catch (err) {
       console.log(err);
       res.status(500).json({
-        message: 'Нет доступа',
+        message: 'Рұқсат жоқ',
       });
     }
   };
