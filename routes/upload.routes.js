@@ -3,23 +3,19 @@ import multer from 'multer'
 
 import * as controllers from '../controllers/upload.controllers.js'
 import checkAuth from '../middlewares/checkAuth.js'
+import storageService from '../services/diskStorage.js'
 
 const uploadRouter = express.Router()
 
-const storage = multer.diskStorage({
-    destination: (_, __, cb) => {
-        cb(null, 'uploads/avatars')
-    },
-    filename: (_, file, cb) => {
-        cb(null, file.originalname)
-    }
+const uploadAvatar = multer({
+    storage: storageService('avatars')
 })
 
-const upload = multer({
-    storage
+const uploadFile = multer({
+    storage: storageService('files')
 })
 
-uploadRouter.post('/avatar', checkAuth, upload.single('image'), controllers.uploadAvatar)
-
+uploadRouter.post('/avatar', checkAuth, uploadAvatar.single('image'), controllers.uploadAvatar)
+uploadRouter.post('/files', checkAuth, uploadFile.single('image'), controllers.uploadFiles)
 
 export default uploadRouter
