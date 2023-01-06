@@ -12,8 +12,8 @@ const PORT = config.get('port.1') || config.get('port.2')
 
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
-
 app.use(cors())
+
 
 const start = async () => {
     try {
