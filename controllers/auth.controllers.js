@@ -119,7 +119,7 @@ export const me = async (req, res) => {
 
 export const update = async (req, res) => {
     try {
-        const { firstname, lastname, patronymic, phone, address } = req.body
+        const { firstname, lastname, patronymic, phone, address, avatarUrl } = req.body
 
         await User.updateOne({
             _id: req.userId
@@ -133,7 +133,8 @@ export const update = async (req, res) => {
                 street: address.street,
                 city: address.city,
                 region: address.region
-            }
+            },
+            avatarUrl: avatarUrl
         })
 
         res.status(200).json({
