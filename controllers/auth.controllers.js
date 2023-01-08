@@ -8,9 +8,7 @@ import User from '../models/User.js'
 export const registration = async (req, res) => {
     try {
         
-        const { email,  password, firstname, lastname, patronymic, phone,
-           address
-        } = req.body
+        const { email,  password, firstname } = req.body
 
         const isEmailExist = await User.findOne({
             email: email
@@ -28,11 +26,7 @@ export const registration = async (req, res) => {
         const document = new User({
             email: email,
             hashedPassword: hash,
-            firstname,
-            lastname,
-            patronymic,
-            phone,
-            address
+            firstname
         })
 
         const user = await document.save()

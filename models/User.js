@@ -15,8 +15,7 @@ const schema = new mongoose.Schema({
     patronymic: String, 
     phone: {
         type: String,
-        unique: true,
-        default: ''
+        unique: true
     },
     address: {
         type: Object,
