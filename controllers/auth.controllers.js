@@ -16,7 +16,7 @@ export const registration = async (req, res) => {
 
         if (isEmailExist) {
             return res.status(400).json({
-                message: 'Email is already exist'
+                message: 'Қолданушы желіде тіркелген'
             })
         }
 
