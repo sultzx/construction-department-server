@@ -13,10 +13,6 @@ const schema = new mongoose.Schema({
     firstname: String,
     lastname: String,
     patronymic: String, 
-    phone: {
-        type: String,
-        unique: true
-    },
     address: {
         type: Object,
         apartment: String,
@@ -25,6 +21,7 @@ const schema = new mongoose.Schema({
         city: String,
         region: String,
     },
+    phone: String,
     avatarUrl: String,
     role: {
         type: String,
