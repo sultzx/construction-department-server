@@ -113,7 +113,7 @@ export const me = async (req, res) => {
 
 export const update = async (req, res) => {
     try {
-        const { firstname, lastname, patronymic, phone, address, avatarUrl } = req.body
+        const { firstname, lastname, patronymic, phone, address } = req.body
 
         await User.updateOne({
             _id: req.userId
@@ -127,17 +127,31 @@ export const update = async (req, res) => {
                 street: address.street,
                 city: address.city,
                 region: address.region
-            },
-            avatarUrl: avatarUrl
+            }
         })
 
         res.status(200).json({
-            success: true
+            message: 'Сіздің жеке мәліметіңіз сәтті өзгерді'
         })
 
     } catch (error) {
         res.status(400).json({
             message: error.message
+        })
+    }
+}
+
+export const deleteAvatar = async (req, res) => {
+    try {
+        await User.updateOne({
+            _id: req.userId
+        }, {
+            avatarUrl: ''
+        })
+        res.status(200).json({success: true})
+    } catch (error) {
+        res.status(500).json({
+            message: 'Профиль суретін өшіру кезінде қате шықты'
         })
     }
 }

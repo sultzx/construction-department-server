@@ -11,5 +11,5 @@ authRouter.post('/registration', validation.registration, validationHandler, con
 authRouter.post('/login', validation.login, validationHandler, controller.login)
 authRouter.get('/me', checkAuth, controller.me)
 authRouter.patch('/update-profile', checkAuth, validation.updatingProfile, validationHandler, controller.update)
-
+authRouter.patch('/delete-avatar', checkAuth, controller.deleteAvatar)
 export default authRouter
