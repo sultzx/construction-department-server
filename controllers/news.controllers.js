@@ -70,7 +70,9 @@ export const remove = async (req, res) => {
 
   try {
 
-    const { id } = req.body;
+    const id  = req.params.id;
+
+    console.log(id)
 
     News.findOneAndDelete(
 
