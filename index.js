@@ -5,6 +5,7 @@ import cors from 'cors'
 
 import authRouter from './routes/auth.routes.js'
 import uploadRouter from './routes/upload.routes.js'
+import newsRouter from './routes/news.routes.js'
 
 const app = express()
 
@@ -25,6 +26,7 @@ const start = async () => {
     }
 
     app.use('/api/auth', authRouter)
+    app.use('/api/news', newsRouter)
     app.use('/api/upload', uploadRouter)
 
     app.listen(PORT, (error) => {

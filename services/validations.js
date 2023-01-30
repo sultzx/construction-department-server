@@ -21,3 +21,11 @@ export const updatingProfile = [
     body('address.city').isLength({min: 3}).isString(),
     body('address.region').isLength({min: 3}).isString()
 ]
+
+export const news = [
+    body('title').isLength({min: 3}).isString(),
+    body('date').optional().isDate(),
+    body('text').isLength({min: 3}).isString(),
+    body('imageUrl').optional().isURL()
+]
+
