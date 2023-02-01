@@ -66,18 +66,16 @@ export const update = async (req, res) => {
   }
 };
 
-export const remove = async (req, res) => {
+export const remove = (req, res) => {
 
   try {
 
-    const id  = req.params.id;
-
-    console.log(id)
+    const newsId  = req.params.id;
 
     News.findOneAndDelete(
 
       {
-        _id: id,
+        _id: newsId,
       },
 
       (err, doc) => {
