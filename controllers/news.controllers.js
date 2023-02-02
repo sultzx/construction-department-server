@@ -26,6 +26,7 @@ export const create = async (req, res) => {
     const { title, date, text, imageUrl } = req.body;
 
     const document = new News({
+
       title: title,
       date: date,
       text: text,
@@ -44,15 +45,20 @@ export const create = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const { id, title, date, text, imageUrl } = req.body;
+    
+    const { id,  title, date, text, imageUrl } = req.body;
 
+    console.log(date, 'date')
+
+    const formatedDate = new Date(date)
+ 
     await News.updateOne(
       {
         _id: id,
       },
       {
         title: title,
-        date: date,
+        date: formatedDate,
         text: text,
         imageUrl: imageUrl,
       }

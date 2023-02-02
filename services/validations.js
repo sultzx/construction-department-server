@@ -24,8 +24,8 @@ export const updatingProfile = [
     
 export const news = [
     body('title').isLength({min: 3}).isString(),
-    body('date').optional().isDate(),
+    body('date').optional().isString(),
     body('text').isLength({min: 3}).isString(),
-    body('imageUrl').optional().isURL()
+    body('imageUrl').optional().isString()
 ]
 

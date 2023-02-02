@@ -18,3 +18,9 @@ export const uploadFiles = (req, res) => {
         url: `/uploads/files/${req.file.originalname}`
     })
 }
+
+export const uploadNewsImages = (req, res) => {
+    res.json({
+        url: `/uploads/newspaper/${req.file.originalname}`
+    })
+}
