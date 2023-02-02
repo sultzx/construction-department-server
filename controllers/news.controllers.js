@@ -48,8 +48,6 @@ export const update = async (req, res) => {
     
     const { id,  title, date, text, imageUrl } = req.body;
 
-    console.log(date, 'date')
-
     const formatedDate = new Date(date)
  
     await News.updateOne(
