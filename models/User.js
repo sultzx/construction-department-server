@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
     },
     firstname: String,
     lastname: String,
-    patronymic: String, 
+    patronymic: String,
     address: {
         type: Object,
         apartment: String,

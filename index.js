@@ -22,7 +22,7 @@ const start = async () => {
         await mongoose.connect(config.get('mongodb.url'))
         console.log(`database OK\tname: ${mongoose.connection.name}`)
     } catch (error) {
-        console.log(`database ERROR\tcodename: ${error.codeName}`)
+        console.log(`database ERROR\tcodename: ${error}`)
     }
 
     app.use('/api/auth', authRouter)
