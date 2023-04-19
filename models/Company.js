@@ -10,9 +10,14 @@ const schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    firstname: String,
-    lastname: String,
-    patronymic: String,
+    name: String,
+    director: {
+        type: Object,
+        lastname: String,
+        firstname: String,
+        patronymic: String,
+        signature: String,
+    },
     coordinates: {
         type: Object,
         description: String,
@@ -21,13 +26,19 @@ const schema = new mongoose.Schema({
     },
     phone: String,
     avatarUrl: String,
+    signature: String,
+    seal: String,
     role: {
         type: String,
+        default: 'company'
+    },
+    category: {
+        type: String,
         required: true,
-        default: 'user'
+        default: 'contractor'
     }
 }, {
     timestamps: true
 })
 
-export default mongoose.model('User', schema)
+export default mongoose.model('Company', schema)
