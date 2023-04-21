@@ -67,3 +67,23 @@ export const remove = (req, res) => {
             error.message})
     }
 }
+
+export const setStatus = async (req, res) => {
+  try {
+    const monitoringId = req.params.id
+    const {status} = req.body
+
+    await Monitoring.updateOne({
+      _id: monitoringId
+    }, {
+      status: status
+    })
+
+    res.status(200).json({
+      message: 'zaebis'
+    })
+
+  } catch (error) {
+    res.status(500).json(error.message)
+  }
+}
