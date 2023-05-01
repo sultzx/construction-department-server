@@ -8,6 +8,7 @@ import uploadRouter from './routes/upload.routes.js'
 import newsRouter from './routes/news.routes.js'
 import projectRouter from './routes/project.routes.js'
 import monitoringRouter from './routes/monitoring.routes.js'
+import contestRouter from './routes/contest.routes.js'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(cors())
 const start = async () => {
     try {
         await mongoose.set('strictQuery', true)
+        await mongoose.set('strictPopulate', false)
         await mongoose.connect(config.get('mongodb.url'))
         console.log(`database OK\tname: ${mongoose.connection.name}`)
     } catch (error) {
@@ -30,6 +32,7 @@ const start = async () => {
     app.use('/api/news', newsRouter)
     app.use('/api/project', projectRouter)
     app.use('/api/monitoring', monitoringRouter)
+    app.use('/api/contest', contestRouter)
     app.use('/api/upload', uploadRouter)
  
     app.listen(PORT, (error) => {
@@ -41,4 +44,5 @@ const start = async () => {
 }
 
 start()
+
 

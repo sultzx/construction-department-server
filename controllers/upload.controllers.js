@@ -68,7 +68,7 @@ export const uploadFiles = (req, res) => {
 }
  
 export const uploadNewsImages = async (req, res) => {
-    const url = `/uploads/newspaper/${req.file.originalname}`
+    const url = `/uploads/newspaper/${req.file.filename}`
     const id = JSON.parse(JSON.stringify(req.body)).id
     
     if (id) {
